@@ -3,7 +3,7 @@ require('spec_helper')
 describe(Train) do
   describe('#line') do
     it('returns the line of an instance of train') do
-      test_train = Train.new(:line => "Blue")
+      test_train = Train.new(:line => "Blue", :id => nil)
       expect(test_train.line()).to(eq("Blue"))
     end
   end
@@ -16,7 +16,7 @@ describe(Train) do
 
   describe('#save') do
     it('pushes an instance of Train into an array of saved Train insrances') do
-      test_train = Train.new(:line => "Yellow")
+      test_train = Train.new(:line => "Yellow", :id => nil)
       test_train.save()
       expect(Train.all()).to(eq([test_train]))
     end
@@ -24,9 +24,17 @@ describe(Train) do
 
   describe('#==') do
     it('evaluates two instances of Train as equal if they have the same line') do
-      test_train = Train.new(:line => "Blue")
-      test_train2 = Train.new(:line => "Blue")
+      test_train = Train.new(:line => "Blue", :id => nil)
+      test_train2 = Train.new(:line => "Blue", :id => nil)
       expect(test_train).to(eq(test_train2))
+    end
+  end
+
+  describe('id') do
+    it('returns an id number for an istance of train') do
+      test_train = Train.new(:line => "Black", :id => nil)
+      test_train.save()
+      expect(test_train.id()).to(be_an_instance_of(Fixnum))
     end
   end
 end
