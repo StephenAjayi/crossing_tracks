@@ -15,4 +15,12 @@ class Train
     end
     trains
   end
+
+  define_method(:save) do
+    DB.exec("INSERT INTO trains (line) VALUES ('#{@line}');")
+  end
+
+  define_method(:==) do |another_task|
+    self.line().==(another_task.line())
+  end
 end
