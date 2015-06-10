@@ -1,6 +1,6 @@
 class Train
 
-  attr_reader(:line,:id)
+  attr_reader(:line, :id)
 
   define_method(:initialize) do |attributes|
     @line = attributes.fetch(:line)
@@ -24,6 +24,14 @@ class Train
   end
 
   define_method(:==) do |another_task|
-    self.line().==(another_task.line())
+    self.line().==(another_task.line()).&(self.id().==(another_task.id()))
+  end
+
+  define_singleton_method(:find) do |id|
+    found_train = nil
+    train = DB.exec("SELECT * FROM trains WHERE id = #{id};")
+    line = train.first.fetch("line")
+    id = train.first.fetch("id").to_i()
+    found_train = Train.new(:line => line, :id => id)
   end
 end

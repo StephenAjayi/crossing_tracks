@@ -37,4 +37,14 @@ describe(Train) do
       expect(test_train.id()).to(be_an_instance_of(Fixnum))
     end
   end
+
+  describe('.find') do
+    it("returns an instance of Train by it's id") do
+      test_train = Train.new(:line => "Black", :id => nil)
+      test_train.save()
+      test_train2 = Train.new(:line => "Blue", :id => nil)
+      test_train2.save()
+      expect(Train.find(test_train.id)).to(eq(test_train))
+    end
+  end
 end
