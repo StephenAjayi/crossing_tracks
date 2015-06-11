@@ -47,4 +47,15 @@ describe(Train) do
       expect(Train.find(test_train.id)).to(eq(test_train))
     end
   end
+
+  describe('#delete') do
+    it('removes an instance of Trani from the arrray of saved instances') do
+      test_train = Train.new(:line => "Blue", :id => nil)
+      test_train.save()
+      test_train2 = Train.new(:line => "Black", :id => nil)
+      test_train2.save()
+      test_train.delete()
+      expect(Train.all()).to(eq([test_train2]))
+    end
+  end
 end

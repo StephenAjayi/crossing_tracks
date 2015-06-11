@@ -34,4 +34,9 @@ class Train
     id = train.first.fetch("id").to_i()
     found_train = Train.new(:line => line, :id => id)
   end
+
+  define_method(:delete) do
+    id = self.id()
+    train_to_delete = DB.exec("DELETE FROM trains * WHERE id = #{id};")
+  end
 end
