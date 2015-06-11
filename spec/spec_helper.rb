@@ -2,6 +2,7 @@ require('rspec')
 require('pg')
 require('city')
 require('train')
+require('stop')
 require('pry')
 DB = PG.connect(:dbname =>"crossing_tracks_test")
 
