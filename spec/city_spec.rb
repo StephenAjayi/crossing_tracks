@@ -58,4 +58,13 @@ describe(City) do
       expect(City.all()).to(eq([test_city2]))
     end
   end
+
+  describe('#update') do
+    it('updates the name of an instance of City') do
+      test_city = City.new(:name => "Portland", :id => nil)
+      test_city.save()
+      test_city.update("Boston")
+      expect(test_city.name()).to(eq("Boston"))
+    end
+  end
 end

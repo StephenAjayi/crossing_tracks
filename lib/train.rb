@@ -37,12 +37,11 @@ class Train
 
   define_method(:delete) do
     id = self.id()
-    train_to_delete = DB.exec("DELETE FROM trains * WHERE id = #{id};")
+    train_to_delete = DB.exec("DELETE FROM trains * WHERE id = #{@id};")
   end
 
   define_method(:update) do |updated_line|
-    id = self.id()
-    train_to_update = DB.exec("UPDATE trains SET line = '#{updated_line}' WHERE id = #{id} RETURNING line;")
-    @line = train_to_update.first().fetch("line") 
+    train_to_update = DB.exec("UPDATE trains SET line = '#{updated_line}' WHERE id = #{@id} RETURNING line;")
+    @line = train_to_update.first().fetch("line")
   end
 end
