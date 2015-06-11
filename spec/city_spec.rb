@@ -37,4 +37,14 @@ describe(City) do
       expect(test_city.id).to(be_an_instance_of(Fixnum))
     end
   end
+
+  describe('.find') do
+    it("returns an instance of City by it's id") do
+      test_city = City.new(:name => "Miami")
+      test_city.save()
+      test_city2 = City.new(:name => "Los Angles")
+      test_city.save()
+      expect(City.find(test_city.id())).to(eq(test_city))
+    end
+  end 
 end

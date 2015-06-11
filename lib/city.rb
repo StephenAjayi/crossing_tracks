@@ -24,4 +24,12 @@ class City
   define_method(:==) do |another_city|
     self.name().==(another_city.name())
   end
+
+  define_singleton_method(:find) do |id|
+    found_city = nil
+    city = DB.exec("SELECT * FROM cities WHERE id = #{id}")
+    name = city.first().fetch("name")
+    id = city.first().fetch("id")
+    found_city = City.new(:name => name, :id => id)
+  end
 end
