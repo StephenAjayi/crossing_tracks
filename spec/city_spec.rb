@@ -63,8 +63,20 @@ describe(City) do
     it('updates the name of an instance of City') do
       test_city = City.new(:name => "Portland", :id => nil)
       test_city.save()
-      test_city.update("Boston")
+      test_city.update(:name => "Boston")
       expect(test_city.name()).to(eq("Boston"))
+    end
+
+
+    it('lets you add a train to a city') do
+      test_city = City.new(:name => "Portland", :id => nil)
+      test_city.save()
+      test_train = Train.new(:line => "Red", :id => nil)
+      test_train.save()
+      test_train2 = Train.new(:line =>"Black", :id => nil)
+      test_train2.save()
+      test_city.update(:train_ids => [test_train.id(), test_train.id()])
+      expect(test_city.trains).to(eq([test_train, test_train2]))
     end
   end
 end
