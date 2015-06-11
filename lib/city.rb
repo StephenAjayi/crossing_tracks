@@ -32,4 +32,8 @@ class City
     id = city.first().fetch("id")
     found_city = City.new(:name => name, :id => id)
   end
+
+  define_method(:delete) do
+    city_to_delete = DB.exec("DELETE FROM cities * WHERE id = #{@id};")
+  end
 end

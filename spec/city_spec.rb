@@ -46,5 +46,16 @@ describe(City) do
       test_city.save()
       expect(City.find(test_city.id())).to(eq(test_city))
     end
-  end 
+  end
+
+  describe('delete') do
+    it('removes an instance of City from an array of saved instances') do
+      test_city = City.new(:name => "Portland", :id => nil)
+      test_city.save()
+      test_city2 = City.new(:name => "Salem", :id => nil)
+      test_city2.save()
+      test_city.delete
+      expect(City.all()).to(eq([test_city2]))
+    end
+  end
 end
