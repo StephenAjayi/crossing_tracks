@@ -13,4 +13,20 @@ describe(City) do
       expect(City.all()).to(eq([]))
     end
   end
+
+  describe("#save") do
+    it('saves an instance of City to an array') do
+      test_city = City.new(:name => "Boston")
+      test_city.save()
+      expect(City.all()).to(eq([test_city]))
+    end
+  end
+
+  describe('#==') do
+    it('evaluates two instances of City as equal if they have the same name') do
+      test_city = City.new(:name => "Denver")
+      test_city2 = City.new(:name => "Denver")
+      expect(test_city).to(eq(test_city2))
+    end
+  end
 end
