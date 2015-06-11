@@ -58,4 +58,12 @@ describe(Train) do
       expect(Train.all()).to(eq([test_train2]))
     end
   end
+  describe('#update') do
+    it('changes the line of a saved instance of Train') do
+      test_train = Train.new(:line => "White", :id => nil)
+      test_train.save()
+      test_train.update("Blue")
+      expect(test_train.line()).to(eq("Blue"))
+    end
+  end
 end
